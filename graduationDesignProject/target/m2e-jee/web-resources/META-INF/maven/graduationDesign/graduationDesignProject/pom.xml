@@ -1,0 +1,96 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+		<!-- 父模块的相对路径， 父模块目录 中要有pom.xml -->
+		<relativePath>../graduationDesignParent</relativePath>
+		<groupId>graduationDesign</groupId>
+ 		 <artifactId>graduationDesignParent</artifactId>
+ 		 <version>0.0.1-SNAPSHOT</version>
+	</parent>
+  
+ 
+  <artifactId>graduationDesignProject</artifactId>
+  <packaging>war</packaging>
+ 
+  <name>graduationDesignProject Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  
+  
+  
+  <dependencies>
+   	<!-- 依赖技术架构模块 -->
+		<dependency>
+			 <groupId>graduationDesign</groupId>
+  			 <artifactId>SpringJpa</artifactId>
+  			 <version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<!-- 工具类 -->
+		<dependency>
+			<groupId>graduationDesign</groupId>
+  			<artifactId>graduationDesignUtil</artifactId>
+  			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+  </dependencies>
+  
+  <build>  
+	   <finalName>graduationDesignProject</finalName>
+        <plugins>  
+            <!-- jdk版本 -->  
+            <plugin>  
+                <groupId>org.apache.maven.plugins</groupId>  
+                <artifactId>maven-compiler-plugin</artifactId>  
+                <version>3.0</version>  
+                <configuration>  
+                    <source>1.7</source>  
+                    <target>1.7</target>  
+                    <encoding>utf-8</encoding>  
+                </configuration>  
+            </plugin>  
+            <!-- 相关文件编码 -->  
+            <plugin>  
+                <groupId>org.apache.maven.plugins</groupId>  
+                <artifactId>maven-resources-plugin</artifactId>  
+                <configuration>  
+                    <encoding>utf-8</encoding>  
+                </configuration>  
+            </plugin>  
+            <!-- war包生成插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<warSourceDirectory>src/main/webapp</warSourceDirectory>
+				</configuration>
+			</plugin>
+			<!-- tomcat运行插件 -->
+			<plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>1.2.3</version>
+				<configuration>
+					<container>
+						<containerId>tomcat8x</containerId>
+						<home>D:\Tomcat</home>
+					</container>
+					<configuration>
+						<type>existing</type>
+						<home>D:\Tomcat</home>
+					</configuration>
+				</configuration>
+				<executions>
+					<execution>
+						<id>cargo-run</id>
+						<phase>install</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+            
+         </plugins>  
+    </build>  
+</project>
